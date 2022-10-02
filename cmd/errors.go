@@ -6,8 +6,10 @@ import (
 )
 
 var (
-	// ErrNotSpecifyAPK user does not specify *.apk
+	// ErrNotSpecifyAPK : user does not specify *.apk
 	ErrNotSpecifyAPK = errors.New("need to specify one or more apk packages")
+	// ErrNotGetAllMeta : failed to get all metadata
+	ErrNotGetAllMeta = errors.New("failed to get all metadata")
 )
 
 // wrap wrap error interface with new message.
