@@ -2,6 +2,7 @@
 package cmd
 
 import (
+	"errors"
 	"os"
 	"path/filepath"
 	"runtime"
@@ -46,6 +47,18 @@ func TestExecute_Completion(t *testing.T) {
 			if !file.IsFile(zsh) {
 				t.Errorf("failed to generate  %s", zsh)
 			}
+		}
+	})
+}
+
+func TestExecute(t *testing.T) {
+	t.Run("not specify apk", func(t *testing.T) {
+		os.Args = []string{"apkparser"}
+		want := ErrNotSpecifyAPK
+		got := rootCmd.Execute()
+
+		if errors.Is(got, want) {
+			t.Errorf("mismatch: want=%v, got=%v", want, got)
 		}
 	})
 }

@@ -6,6 +6,8 @@ import (
 	"github.com/spf13/cobra"
 )
 
+var osExit = os.Exit
+
 var rootCmd = &cobra.Command{
 	Use: "apkparser",
 }
@@ -14,9 +16,8 @@ var rootCmd = &cobra.Command{
 func Execute() {
 	rootCmd.CompletionOptions.DisableDefaultCmd = true
 	rootCmd.SilenceErrors = true
-	deployShellCompletionFileIfNeeded(rootCmd)
 
 	if err := rootCmd.Execute(); err != nil {
-		os.Exit(1)
+		osExit(1)
 	}
 }

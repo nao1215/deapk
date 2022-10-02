@@ -18,8 +18,9 @@ var completionCmd = &cobra.Command{
 	Short: "Create shell completion files (bash, fish, zsh) for the apkparser",
 	Long: `Create shell completion files (bash, fish, zsh) for the apkparser command
 if it is not already on the system`,
-	Run: func(cmd *cobra.Command, args []string) {
+	RunE: func(cmd *cobra.Command, args []string) error {
 		deployShellCompletionFileIfNeeded(rootCmd)
+		return nil
 	},
 }
 
