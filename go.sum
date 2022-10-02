@@ -17,6 +17,8 @@ github.com/nao1215/morrigan v0.0.12 h1:3wqVzwgQxbAWjsk0fyo7hYWyhWQCqz8yr82a/nHF/
 github.com/nao1215/morrigan v0.0.12/go.mod h1:QbHcGn0kmADMHS4pnQ15EVcEwl48eJ4eF8HU+tmBN48=
 github.com/pmezard/go-difflib v1.0.0 h1:4DBwDE0NGyQoBHbLQYPwSUPoCMWR5BEzIk/f1lZbAQM=
 github.com/russross/blackfriday/v2 v2.1.0/go.mod h1:+Rmxgy9KzJVeS9/2gXHxylqXiyQDYRxCVz55jmeOWTM=
+github.com/shogo82148/androidbinary v1.0.3 h1:0E9bBCcDVwb2xJP3NwDkdfkxtOrys3DK/NjxnUq+bNI=
+github.com/shogo82148/androidbinary v1.0.3/go.mod h1:TZXT25KBG2LxEC+kh7v2qvmwXfMwC/FNxKt7uTf8tJc=
 github.com/spf13/cobra v1.5.0 h1:X+jTBEBqF0bHN+9cSMgmfuvv2VHJ9ezmFNf9Y/XstYU=
 github.com/spf13/cobra v1.5.0/go.mod h1:dWXEIy2H428czQCjInthrTRUg7yKbok+2Qi/yBIJoUM=
 github.com/spf13/pflag v1.0.5 h1:iy+VFUOCP1a+8yFto/drg2CJ5u0yRoB7fZw3DKv/JXA=
