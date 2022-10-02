@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"apkparser/internal/print"
 	"os"
 
 	"github.com/spf13/cobra"
@@ -18,6 +19,7 @@ func Execute() {
 	rootCmd.SilenceErrors = true
 
 	if err := rootCmd.Execute(); err != nil {
+		print.Err(err)
 		osExit(1)
 	}
 }
