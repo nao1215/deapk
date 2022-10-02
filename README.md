@@ -1,5 +1,4 @@
 [![Build](https://github.com/nao1215/apk-parser/actions/workflows/build.yml/badge.svg)](https://github.com/nao1215/apk-parser/actions/workflows/build.yml)
-[![MultiVersionUnitTest](https://github.com/nao1215/apk-parser/actions/workflows/multi_ver_unittest.yml/badge.svg)](https://github.com/nao1215/apk-parser/actions/workflows/multi_ver_unittest.yml)
 [![PlatformTests](https://github.com/nao1215/apk-parser/actions/workflows/platform_test.yml/badge.svg)](https://github.com/nao1215/apk-parser/actions/workflows/platform_test.yml)
 [![reviewdog](https://github.com/nao1215/apk-parser/actions/workflows/reviewdog.yml/badge.svg)](https://github.com/nao1215/apk-parser/actions/workflows/reviewdog.yml)
 [![codecov](https://codecov.io/gh/nao1215/apk-parser/branch/main/graph/badge.svg?token=DNV3TRMRCJ)](https://codecov.io/gh/nao1215/apk-parser)
