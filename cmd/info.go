@@ -7,10 +7,10 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var allCmd = &cobra.Command{
-	Use:   "all APK_FILES",
-	Short: "Print all meta-data from android package (.apk)",
-	Long:  `Print all meta-data from android package (.apk)`,
+var infoCmd = &cobra.Command{
+	Use:   "info APK_FILES",
+	Short: "Print info meta-data from android package (.apk)",
+	Long:  `Print info meta-data from android package (.apk)`,
 	Run: func(cmd *cobra.Command, args []string) {
 		if err := all(cmd, args); err != nil {
 			print.Err(err)
@@ -20,7 +20,7 @@ var allCmd = &cobra.Command{
 }
 
 func init() {
-	rootCmd.AddCommand(allCmd)
+	rootCmd.AddCommand(infoCmd)
 }
 
 func all(cmd *cobra.Command, args []string) error {
