@@ -7,3 +7,5 @@
 ![GitHub](https://img.shields.io/github/license/nao1215/apk-parser)  
 # deapk - parse android package (.apk), getting meta data.
 [WIP]
+- show *.apk metadata
+- de-compile dex
