@@ -1,4 +1,4 @@
-module apkparser
+module deapk
 
 go 1.19
 

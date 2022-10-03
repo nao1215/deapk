@@ -1,6 +1,6 @@
 package main
 
-import "apkparser/cmd"
+import "deapk/cmd"
 
 func main() {
 	cmd.Execute()

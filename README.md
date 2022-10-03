@@ -5,5 +5,5 @@
 [![Go Reference](https://pkg.go.dev/badge/github.com/nao1215/apk-parser.svg)](https://pkg.go.dev/github.com/nao1215/apk-parser)
 [![Go Report Card](https://goreportcard.com/badge/github.com/nao1215/apk-parser)](https://goreportcard.com/report/github.com/nao1215/apk-parser)
 ![GitHub](https://img.shields.io/github/license/nao1215/apk-parser)  
-# apk-parser - parse android package (.apk), getting meta data.
+# deapk - parse android package (.apk), getting meta data.
 [WIP]

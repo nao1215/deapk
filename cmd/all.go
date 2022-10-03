@@ -1,7 +1,7 @@
 package cmd
 
 import (
-	"apkparser/internal/print"
+	"deapk/internal/print"
 
 	"github.com/shogo82148/androidbinary/apk"
 	"github.com/spf13/cobra"

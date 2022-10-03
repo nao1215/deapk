@@ -1,6 +1,6 @@
 .PHONY: build test clean vet fmt chkfmt
 
-APP         = apkparser
+APP         = deapk
 VERSION     = $(shell git describe --tags --abbrev=0)
 GO          = go
 GO_BUILD    = $(GO) build
@@ -15,7 +15,7 @@ GOOS        = ""
 GOARCH      = ""
 GO_PKGROOT  = ./...
 GO_PACKAGES = $(shell $(GO_LIST) $(GO_PKGROOT))
-GO_LDFLAGS  = -ldflags '-X apkparser/cmd.Version=${VERSION}'
+GO_LDFLAGS  = -ldflags '-X deapk/cmd.Version=${VERSION}'
 
 build:  ## Build binary
 	env GO111MODULE=on GOOS=$(GOOS) GOARCH=$(GOARCH) $(GO_BUILD) $(GO_LDFLAGS) -o $(APP) main.go
