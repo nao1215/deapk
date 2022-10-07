@@ -1,7 +1,6 @@
 package cmd
 
 import (
-	"apkparser/internal/print"
 	"bytes"
 	"fmt"
 	"os"
@@ -9,14 +8,16 @@ import (
 	"runtime"
 	"strings"
 
+	"github.com/nao1215/deapk/internal/print"
+
 	"github.com/nao1215/morrigan/file"
 	"github.com/spf13/cobra"
 )
 
 var completionCmd = &cobra.Command{
 	Use:   "completion",
-	Short: "Create shell completion files (bash, fish, zsh) for the apkparser",
-	Long: `Create shell completion files (bash, fish, zsh) for the apkparser command
+	Short: "Create shell completion files (bash, fish, zsh) for the deapk",
+	Long: `Create shell completion files (bash, fish, zsh) for the deapk command
 if it is not already on the system`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		deployShellCompletionFileIfNeeded(rootCmd)
@@ -131,7 +132,7 @@ func makeZshCompletionFileIfNeeded(cmd *cobra.Command) {
 
 func appendFpathAtZshrcIfNeeded() {
 	const zshFpath = `
-# setting for apkparser command (auto generate)
+# setting for deapk command (auto generate)
 fpath=(~/.zsh/completion $fpath)
 autoload -Uz compinit && compinit -i
 `

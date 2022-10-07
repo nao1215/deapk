@@ -23,7 +23,7 @@ func init() {
 var Version string
 
 // Name is command name
-const Name = "apkparser"
+const Name = "deapk"
 
 // getVersion return gup command version.
 // Version global variable is set by s.

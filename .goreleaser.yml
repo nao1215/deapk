@@ -1,4 +1,4 @@
-project_name: apkparser
+project_name: deapk
 env:
   - GO111MODULE=on
 before:
@@ -8,7 +8,7 @@ before:
 builds:
   - main: .
     ldflags:
-      - -s -w -X apkparser/cmd.Version=v{{ .Version }}
+      - -s -w -X deapk/cmd.Version=v{{ .Version }}
     env:
       - CGO_ENABLED=0
     goos:
@@ -35,4 +35,4 @@ changelog:
   filters:
     exclude:
       - "^docs:"
-      - "^test:"	
+      - "^test:"

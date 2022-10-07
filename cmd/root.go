@@ -1,8 +1,9 @@
 package cmd
 
 import (
-	"apkparser/internal/print"
 	"os"
+
+	"github.com/nao1215/deapk/internal/print"
 
 	"github.com/spf13/cobra"
 )
@@ -10,7 +11,7 @@ import (
 var osExit = os.Exit
 
 var rootCmd = &cobra.Command{
-	Use: "apkparser",
+	Use: "deapk",
 }
 
 // Execute start command.

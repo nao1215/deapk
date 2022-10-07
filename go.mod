@@ -1,4 +1,4 @@
-module apkparser
+module github.com/nao1215/deapk
 
 go 1.19
 
