@@ -6,7 +6,7 @@ package android
 type API struct {
 	// Level is Android API level.
 	Level uint64 `json:"level,omitempty"`
-	// CodeName is Android OS codename that is diffrent each version.
+	// CodeName is Android OS codename that is different each version.
 	CodeName string `json:"code_name,omitempty"`
 	// Version is Android OS version.
 	Version string `json:"version,omitempty"`
