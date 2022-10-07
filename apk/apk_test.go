@@ -72,7 +72,9 @@ func TestAPK_Parse(t *testing.T) {
 
 		// Test start
 		a := NewAPK("../testdata/app-debug.apk")
-		a.Parse()
+		if err := a.Parse(); err != nil {
+			t.Fatal(err)
+		}
 		a.Print(os.Stdout)
 
 		pw.Close()
