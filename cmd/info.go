@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"fmt"
 	"os"
 
 	"github.com/nao1215/deapk/apk"
@@ -11,8 +12,8 @@ import (
 
 var infoCmd = &cobra.Command{
 	Use:   "info APK_FILES",
-	Short: "Print info meta-data from android package (.apk)",
-	Long:  `Print info meta-data from android package (.apk)`,
+	Short: "Print meta-data for android package (.apk)",
+	Long:  `Print meta-data for android package (.apk)`,
 	Run: func(cmd *cobra.Command, args []string) {
 		if err := all(cmd, args); err != nil {
 			print.Err(err)
@@ -22,6 +23,7 @@ var infoCmd = &cobra.Command{
 }
 
 func init() {
+	infoCmd.Flags().StringP("output", "o", "", "output apk information to the file")
 	rootCmd.AddCommand(infoCmd)
 }
 
@@ -30,10 +32,26 @@ func all(cmd *cobra.Command, args []string) error {
 		return ErrNotSpecifyAPK
 	}
 
+	output, err := cmd.Flags().GetString("output")
+	if err != nil {
+		return (fmt.Errorf("%s: %w", "can not parse command line argument (--output)", err))
+	}
+
 	apk := apk.NewAPK(args[0])
 	if err := apk.Parse(); err != nil {
 		return err
 	}
-	apk.Print(os.Stdout)
+
+	writer := os.Stdout
+	if output != "" {
+		f, err := os.OpenFile(output, os.O_RDWR|os.O_CREATE|os.O_TRUNC, 0666)
+		if err != nil {
+			return nil
+		}
+		defer f.Close()
+		writer = f
+	}
+	apk.Print(writer)
+
 	return nil
 }
