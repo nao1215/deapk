@@ -24,6 +24,7 @@ var infoCmd = &cobra.Command{
 
 func init() {
 	infoCmd.Flags().StringP("output", "o", "", "output apk information to the file")
+	infoCmd.Flags().BoolP("json", "j", false, "output apk information in json format")
 	rootCmd.AddCommand(infoCmd)
 }
 
@@ -35,6 +36,11 @@ func all(cmd *cobra.Command, args []string) error {
 	output, err := cmd.Flags().GetString("output")
 	if err != nil {
 		return (fmt.Errorf("%s: %w", "can not parse command line argument (--output)", err))
+	}
+
+	json, err := cmd.Flags().GetBool("json")
+	if err != nil {
+		return (fmt.Errorf("%s: %w", "can not parse command line argument (--json)", err))
 	}
 
 	apk := apk.NewAPK(args[0])
@@ -51,7 +57,12 @@ func all(cmd *cobra.Command, args []string) error {
 		defer f.Close()
 		writer = f
 	}
-	apk.Print(writer)
+
+	if json {
+		apk.PrintJSON(writer)
+	} else {
+		apk.Print(writer)
+	}
 
 	return nil
 }

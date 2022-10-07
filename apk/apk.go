@@ -2,6 +2,7 @@
 package apk
 
 import (
+	"encoding/json"
 	"errors"
 	"fmt"
 	"io"
@@ -128,4 +129,14 @@ func (a *APK) Print(w io.Writer) {
 	fmt.Fprintf(w, "sdk max version    : %d (deprecated attribute)\n", a.Package.Basic.SDK.Maximum)
 	fmt.Fprintf(w, "sdk min version    : %d\n", a.Package.Basic.SDK.Minimium)
 	fmt.Fprintf(w, "main activity      : %s\n", a.Package.Basic.MainActivity)
+}
+
+// PrintJSON write apk information in json format
+func (a *APK) PrintJSON(w io.Writer) error {
+	j, err := json.MarshalIndent(a.Package, "", "\t")
+	if err != nil {
+		return err
+	}
+	fmt.Fprintln(w, string(j))
+	return nil
 }
