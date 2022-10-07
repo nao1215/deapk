@@ -16,7 +16,6 @@ type API struct {
 // on the API level (argument lv). For non-existent API levels,
 // each field will be empty.
 func NewAPI(lv uint64) *API {
-	const layout = "2006-01-02"
 	switch lv {
 	case 1:
 		return &API{
