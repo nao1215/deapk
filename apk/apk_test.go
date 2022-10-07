@@ -25,6 +25,11 @@ func TestNewAPK(t *testing.T) {
 			},
 			want: &APK{
 				Path: "path/to/apk",
+				Package: &Package{
+					Basic: &Basic{
+						SDK: &SDK{},
+					},
+				},
 			},
 		},
 	}

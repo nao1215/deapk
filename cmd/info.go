@@ -59,7 +59,9 @@ func all(cmd *cobra.Command, args []string) error {
 	}
 
 	if json {
-		apk.PrintJSON(writer)
+		if err := apk.PrintJSON(writer); err != nil {
+			return err
+		}
 	} else {
 		apk.Print(writer)
 	}

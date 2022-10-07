@@ -46,7 +46,7 @@ type Basic struct {
 // SDK is android sdk information
 type SDK struct {
 	// Minimun is supported minimum SDK versions
-	Minimium int32 `json:"minimium,omitempty"`
+	Minimum int32 `json:"minimum,omitempty"`
 	// Target is target SDK version.
 	Target int32 `json:"target,omitempty"`
 	// Maximum is supported maximum SDK versions. It's deprecated attribute from android 2.0.1.
@@ -104,9 +104,9 @@ func (a *APK) setBasicInfo(apk apk.Apk) {
 
 func (a *APK) setSDK(apk apk.Apk) {
 	var err error
-	a.Package.Basic.SDK.Minimium, err = apk.Manifest().SDK.Min.Int32()
+	a.Package.Basic.SDK.Minimum, err = apk.Manifest().SDK.Min.Int32()
 	if err != nil {
-		a.Package.Basic.SDK.Minimium = -1
+		a.Package.Basic.SDK.Minimum = -1
 	}
 
 	a.Package.Basic.SDK.Target, err = apk.Manifest().SDK.Target.Int32()
@@ -127,7 +127,7 @@ func (a *APK) Print(w io.Writer) {
 	fmt.Fprintf(w, "application version: %s\n", a.Package.Basic.Version)
 	fmt.Fprintf(w, "sdk target version : %d\n", a.Package.Basic.SDK.Target)
 	fmt.Fprintf(w, "sdk max version    : %d (deprecated attribute)\n", a.Package.Basic.SDK.Maximum)
-	fmt.Fprintf(w, "sdk min version    : %d\n", a.Package.Basic.SDK.Minimium)
+	fmt.Fprintf(w, "sdk min version    : %d\n", a.Package.Basic.SDK.Minimum)
 	fmt.Fprintf(w, "main activity      : %s\n", a.Package.Basic.MainActivity)
 }
 
