@@ -2,6 +2,8 @@
 package apk
 
 import (
+	"errors"
+	"fmt"
 	"testing"
 
 	"github.com/google/go-cmp/cmp"
@@ -34,4 +36,18 @@ func TestNewAPK(t *testing.T) {
 			}
 		})
 	}
+}
+
+func TestAPK_Parse(t *testing.T) {
+	t.Run("Failed to open apk file", func(t *testing.T) {
+		a := &APK{
+			Path: "not/exist/path",
+		}
+
+		want := fmt.Errorf("%w: %s", ErrNotOpenAPK, a.Path)
+		got := a.Parse()
+		if errors.Is(want, got) {
+			t.Errorf("mismatch want=%v, got=%v", want, got)
+		}
+	})
 }
