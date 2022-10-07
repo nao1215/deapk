@@ -1,4 +1,4 @@
-// Package android handles Android OS or Android application information.
+// Package android handles Android OS information.
 package android
 
 // API struct summarizes information for each android API level.

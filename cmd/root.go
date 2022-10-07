@@ -1,8 +1,9 @@
 package cmd
 
 import (
-	"deapk/internal/print"
 	"os"
+
+	"github.com/nao1215/deapk/internal/print"
 
 	"github.com/spf13/cobra"
 )

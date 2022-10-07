@@ -2,12 +2,13 @@ package cmd
 
 import (
 	"bytes"
-	"deapk/internal/print"
 	"fmt"
 	"os"
 	"path/filepath"
 	"runtime"
 	"strings"
+
+	"github.com/nao1215/deapk/internal/print"
 
 	"github.com/nao1215/morrigan/file"
 	"github.com/spf13/cobra"

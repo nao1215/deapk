@@ -1,7 +1,11 @@
 package cmd
 
 import (
-	"deapk/internal/print"
+	"fmt"
+	"io"
+	"os"
+
+	"github.com/nao1215/deapk/internal/print"
 
 	"github.com/shogo82148/androidbinary/apk"
 	"github.com/spf13/cobra"
@@ -30,23 +34,34 @@ func all(cmd *cobra.Command, args []string) error {
 
 	var e error
 	for _, v := range args {
-		if err := getAllMetadata(v); err != nil {
+		meta, err := parseMetadata(v)
+		if err != nil {
 			// TODO: Use errors.Join() in the future
 			print.Warn(err)
 			e = ErrNotGetAllMeta
 		}
+		meta.print(os.Stdout)
 	}
 	return e
 }
 
-func getAllMetadata(apkPath string) error {
+type metadata struct {
+	packageName string
+}
+
+func parseMetadata(apkPath string) (*metadata, error) {
 	pkg, err := apk.OpenFile(apkPath)
 	if err != nil {
-		return err
+		return nil, err
 	}
 	defer pkg.Close()
 
-	print.Info(pkg.PackageName())
+	meta := &metadata{}
+	meta.packageName = pkg.PackageName()
 
-	return nil
+	return meta, nil
+}
+
+func (m *metadata) print(w io.Writer) {
+	fmt.Fprintf(w, "pacakage name: %s\n", m.packageName)
 }
