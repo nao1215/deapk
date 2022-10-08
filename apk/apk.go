@@ -26,7 +26,9 @@ type APK struct {
 // Package is Android Package (*.apk) information.
 type Package struct {
 	// Basic is basic information for apk file.
-	Basic *Basic
+	Basic *Basic `json:"basic,omitempty"`
+	// Metadata is metadata from AndroidManifest.
+	Metadata []*Metadata `json:"metadata,omitempty"`
 }
 
 // Basic is basic information for apk file.
@@ -41,6 +43,14 @@ type Basic struct {
 	MainActivity string `json:"main_activity,omitempty"`
 	// SDK is android sdk information.
 	SDK *SDK `json:"sdk,omitempty"`
+}
+
+// Metadata is metadata from AndroidManifest.
+type Metadata struct {
+	// Name is unique name to identify the value
+	Name string `json:"name,omitempty"`
+	// Value is value assigned to the item.
+	Value string `json:"value,omitempty"`
 }
 
 // SDK is android sdk information
@@ -61,6 +71,7 @@ func NewAPK(path string) *APK {
 			Basic: &Basic{
 				SDK: &SDK{},
 			},
+			Metadata: []*Metadata{},
 		},
 	}
 }
@@ -74,14 +85,14 @@ func (a *APK) Parse() error {
 	}
 	defer apk.Close()
 
-	a.setBasicInfo(*apk)
-
+	a.setBasicInfo(apk)
+	a.setMetadata(apk)
 	return nil
 }
 
 // setBasicInfo extract basic information from the apk file and
 // set its contents into an APK struct.
-func (a *APK) setBasicInfo(apk apk.Apk) {
+func (a *APK) setBasicInfo(apk *apk.Apk) {
 	a.setSDK(apk)
 	a.Package.Basic.PackageName = apk.PackageName()
 
@@ -102,7 +113,7 @@ func (a *APK) setBasicInfo(apk apk.Apk) {
 	}
 }
 
-func (a *APK) setSDK(apk apk.Apk) {
+func (a *APK) setSDK(apk *apk.Apk) {
 	var err error
 	a.Package.Basic.SDK.Minimum, err = apk.Manifest().SDK.Min.Int32()
 	if err != nil {
@@ -120,15 +131,40 @@ func (a *APK) setSDK(apk apk.Apk) {
 	}
 }
 
+func (a *APK) setMetadata(apk *apk.Apk) {
+	for _, v := range apk.Manifest().App.MetaData {
+		name, err := v.Name.String()
+		if err != nil {
+			name = "(can not parse metadata name)"
+		}
+
+		value, err := v.Value.String()
+		if err != nil {
+			name = "(can not parse metadata value)"
+		}
+		a.Package.Metadata = append(a.Package.Metadata, &Metadata{Name: name, Value: value})
+	}
+}
+
 // Print write apk information at io.Writer (e.g. STDOUT)
 func (a *APK) Print(w io.Writer) {
-	fmt.Fprintf(w, "pacakage name      : %s\n", a.Package.Basic.PackageName)
-	fmt.Fprintf(w, "application name   : %s\n", a.Package.Basic.ApplicationName)
-	fmt.Fprintf(w, "application version: %s\n", a.Package.Basic.Version)
-	fmt.Fprintf(w, "sdk target version : %d\n", a.Package.Basic.SDK.Target)
-	fmt.Fprintf(w, "sdk max version    : %d (deprecated attribute)\n", a.Package.Basic.SDK.Maximum)
-	fmt.Fprintf(w, "sdk min version    : %d\n", a.Package.Basic.SDK.Minimum)
-	fmt.Fprintf(w, "main activity      : %s\n", a.Package.Basic.MainActivity)
+	fmt.Fprintf(w, "[Application]\n")
+	fmt.Fprintf(w, " name           : %s\n", a.Package.Basic.ApplicationName)
+	fmt.Fprintf(w, " version        : %s\n", a.Package.Basic.Version)
+	fmt.Fprintf(w, " main activity  : %s\n", a.Package.Basic.MainActivity)
+	fmt.Fprintf(w, " package        : %s\n", a.Package.Basic.PackageName)
+	fmt.Fprintf(w, "[SDK]\n")
+	fmt.Fprintf(w, " target version : %d\n", a.Package.Basic.SDK.Target)
+	fmt.Fprintf(w, " max version    : %d (deprecated attribute)\n", a.Package.Basic.SDK.Maximum)
+	fmt.Fprintf(w, " min version    : %d\n", a.Package.Basic.SDK.Minimum)
+
+	if len(a.Package.Metadata) != 0 {
+		fmt.Fprintf(w, "[Metadata]\n")
+	}
+	for _, v := range a.Package.Metadata {
+		fmt.Fprintf(w, "android:name       : %s\n", v.Name)
+		fmt.Fprintf(w, "android:value      : %s\n", v.Value)
+	}
 }
 
 // PrintJSON write apk information in json format
