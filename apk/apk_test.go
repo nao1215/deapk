@@ -33,6 +33,7 @@ func TestNewAPK(t *testing.T) {
 					Basic: &Basic{
 						SDK: &SDK{},
 					},
+					Metadata: []*Metadata{},
 				},
 			},
 		},
@@ -90,13 +91,15 @@ func TestAPK_Parse(t *testing.T) {
 		got := strings.Split(buf.String(), "\n")
 
 		want := []string{
-			"pacakage name      : jp.debimate.deapk_test",
-			"application name   : deapk-test",
-			"application version: 1.0",
-			"sdk target version : 31",
-			"sdk max version    : -1 (deprecated attribute)",
-			"sdk min version    : 31",
-			"main activity      : jp.debimate.deapk_test.MainActivity",
+			"[Application]",
+			" name           : deapk-test",
+			" version        : 1.0",
+			" main activity  : jp.debimate.deapk_test.MainActivity",
+			" package        : jp.debimate.deapk_test",
+			"[SDK]",
+			" target version : 31",
+			" max version    : -1 (deprecated attribute)",
+			" min version    : 31",
 			"",
 		}
 		if diff := cmp.Diff(want, got); diff != "" {
