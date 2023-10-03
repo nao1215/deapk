@@ -7,7 +7,7 @@ require (
 	github.com/google/go-cmp v0.5.9
 	github.com/mattn/go-colorable v0.1.13
 	github.com/nao1215/morrigan v0.0.12
-	github.com/shogo82148/androidbinary v1.0.3
+	github.com/shogo82148/androidbinary v1.0.4
 	github.com/spf13/cobra v1.7.0
 )
 
