@@ -5,6 +5,10 @@
 [![Go Reference](https://pkg.go.dev/badge/github.com/nao1215/apk-parser.svg)](https://pkg.go.dev/github.com/nao1215/apk-parser)
 [![Go Report Card](https://goreportcard.com/badge/github.com/nao1215/apk-parser)](https://goreportcard.com/report/github.com/nao1215/apk-parser)
 ![GitHub](https://img.shields.io/github/license/nao1215/apk-parser)  
+
+>[!WARNING]
+> Release new tool: [nao1215/mobilepkg](https://github.com/nao1215/mobilepkg). 
+
 # deapk - parse android package (.apk), getting meta data.
 The deapk (decompile android package) command parses the apk file and outputs metadata information. It is still in the development stage and output information is few. In the future, deapk will provide the ability to decompile dex files and convert them to source code.
   
