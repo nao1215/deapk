@@ -4,7 +4,7 @@ go 1.19
 
 require (
 	github.com/fatih/color v1.18.0
-	github.com/google/go-cmp v0.6.0
+	github.com/google/go-cmp v0.7.0
 	github.com/mattn/go-colorable v0.1.14
 	github.com/nao1215/morrigan v0.0.12
 	github.com/shogo82148/androidbinary v1.0.5
